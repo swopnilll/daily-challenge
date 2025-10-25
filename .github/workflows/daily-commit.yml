@@ -47,10 +47,7 @@ jobs:
           else
             # Get current date for commit message
             CURRENT_DATE=$(date +'%Y-%m-%d')
-            git commit -m "Add daily DSA question for ${CURRENT_DATE} 🚀
-
-Generated with Claude Code
-https://claude.com/claude-code"
+            git commit -m "Add daily DSA question for ${CURRENT_DATE}"
             git push
             echo "Successfully pushed daily question!"
           fi
