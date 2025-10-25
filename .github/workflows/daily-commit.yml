@@ -1,9 +1,12 @@
-name: Daily Commit (Test Mode)
+name: Daily Commit (Push + Cron)
 
 on:
+  push:
+    branches:
+      - main             # Run workflow on any push to main
   schedule:
-    - cron: '*/1 * * * *'   # Runs every 1 minute
-  workflow_dispatch:         # Allow manual trigger too
+    - cron: '*/5 * * * *'  # Run every 5 minutes (adjust later)
+  workflow_dispatch:        # Allows manual trigger too
 
 jobs:
   keep_green:
@@ -13,11 +16,20 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Debug Start
+        run: echo "Workflow started at $(date)"
+
       - name: Update daily log
         run: |
-          echo "Test log entry for $(date)" >> daily_log.txt
+          # Create the log file if it doesn't exist
+          touch daily_log.txt
+
+          # Append date to log
+          echo "$(date): Daily commit" >> daily_log.txt
+
+          # Git commit and push
           git config --global user.name "swopnilll"
           git config --global user.email "swopnilacharya@gmail.com"
           git add daily_log.txt
-          git commit -m "Test update $(date)" || echo "Nothing to commit"
+          git commit -m "Auto-update: $(date)" || echo "Nothing to commit"
           git push
