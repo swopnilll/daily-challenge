@@ -3,10 +3,10 @@ name: Daily Commit (Push + Cron)
 on:
   push:
     branches:
-      - main             # Run workflow on any push to main
+      - main
   schedule:
-    - cron: '*/5 * * * *'  # Run every 5 minutes (adjust later)
-  workflow_dispatch:        # Allows manual trigger too
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   keep_green:
@@ -15,21 +15,18 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # important for pushing
 
       - name: Debug Start
         run: echo "Workflow started at $(date)"
 
       - name: Update daily log
         run: |
-          # Create the log file if it doesn't exist
           touch daily_log.txt
-
-          # Append date to log
           echo "$(date): Daily commit" >> daily_log.txt
-
-          # Git commit and push
           git config --global user.name "swopnilll"
           git config --global user.email "swopnilacharya@gmail.com"
           git add daily_log.txt
           git commit -m "Auto-update: $(date)" || echo "Nothing to commit"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/swopnilll/daily-challenge.git HEAD:main
