@@ -1,0 +1,23 @@
+name: Daily Commit (Test Mode)
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'   # Runs every 1 minute
+  workflow_dispatch:         # Allow manual trigger too
+
+jobs:
+  keep_green:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update daily log
+        run: |
+          echo "Test log entry for $(date)" >> daily_log.txt
+          git config --global user.name "swopnilll"
+          git config --global user.email "swopnilacharya@gmail.com"
+          git add daily_log.txt
+          git commit -m "Test update $(date)" || echo "Nothing to commit"
+          git push
