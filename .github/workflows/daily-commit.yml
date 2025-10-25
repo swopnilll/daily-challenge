@@ -1,31 +1,56 @@
-name: Daily Commit (Push + Cron)
+name: Daily DSA Question Generator
 
 on:
+  schedule:
+    # Run every day at 00:00 UTC (midnight)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  # Optional: Also run when the workflow file is pushed
   push:
     branches:
       - main
-  schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
+    paths:
+      - '.github/workflows/daily-commit.yml'
 
 jobs:
-  keep_green:
+  generate_daily_question:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        # persist-credentials: true is default, allows push
+        with:
+          # Ensure we have the full history for proper commits
+          fetch-depth: 0
 
-      - name: Debug Start
-        run: echo "Workflow started at $(date)"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Update daily log
+      - name: Generate daily DSA question
         run: |
-          touch daily_log.txt
-          echo "$(date): Daily commit" >> daily_log.txt
+          echo "Starting daily question generation at $(date)"
+          node generate-daily-question.js
+
+      - name: Commit and push changes
+        run: |
           git config --global user.name "swopnilll"
           git config --global user.email "swopnilacharya@gmail.com"
-          git add daily_log.txt
-          git commit -m "Auto-update: $(date)" || echo "Nothing to commit"
-          git push
+
+          # Add all new files and changes
+          git add DSA/ questions-tracker.json
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            # Get current date for commit message
+            CURRENT_DATE=$(date +'%Y-%m-%d')
+            git commit -m "Add daily DSA question for ${CURRENT_DATE} 🚀
+
+Generated with Claude Code
+https://claude.com/claude-code"
+            git push
+            echo "Successfully pushed daily question!"
+          fi
