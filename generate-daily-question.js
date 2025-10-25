@@ -45,6 +45,28 @@ function createFolderStructure(year, month, weekNumber, day) {
 }
 
 /**
+ * Find the next available question number in the folder
+ */
+function getNextQuestionNumber(folderPath) {
+  if (!fs.existsSync(folderPath)) {
+    return 1;
+  }
+
+  const files = fs.readdirSync(folderPath);
+  const questionFiles = files.filter(f => f.match(/^\d+\.js$/));
+
+  if (questionFiles.length === 0) {
+    return 1;
+  }
+
+  // Extract numbers from filenames and find the max
+  const numbers = questionFiles.map(f => parseInt(f.replace('.js', '')));
+  const maxNumber = Math.max(...numbers);
+
+  return maxNumber + 1;
+}
+
+/**
  * Load questions database
  */
 function loadQuestions() {
@@ -184,6 +206,10 @@ function main() {
     // Create folder structure
     const folderPath = createFolderStructure(year, month, weekNumber, day);
 
+    // Get next question number
+    const questionNumber = getNextQuestionNumber(folderPath);
+    console.log(`Next question number: ${questionNumber}.js`);
+
     // Load questions and tracker
     const questions = loadQuestions();
     const tracker = loadTracker();
@@ -194,14 +220,7 @@ function main() {
 
     // Generate question file
     const fileContent = generateQuestionFile(question);
-    const filePath = path.join(folderPath, '1.js');
-
-    // Check if file already exists
-    if (fs.existsSync(filePath)) {
-      console.log(`File already exists: ${filePath}`);
-      console.log('Skipping file creation to avoid overwriting.');
-      return;
-    }
+    const filePath = path.join(folderPath, `${questionNumber}.js`);
 
     // Write file
     fs.writeFileSync(filePath, fileContent);

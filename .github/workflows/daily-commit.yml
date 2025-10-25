@@ -2,8 +2,8 @@ name: Daily DSA Question Generator
 
 on:
   schedule:
-    # Run every day at 00:00 UTC (midnight)
-    - cron: '0 0 * * *'
+    # TESTING: Run every 5 minutes (change back to '0 0 * * *' for daily)
+    - cron: '*/5 * * * *'
   workflow_dispatch:
   # Optional: Also run when the workflow file is pushed
   push:
