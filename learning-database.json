@@ -1,0 +1,234 @@
+{
+  "concepts": [
+    {
+      "title": "HTTP caching",
+      "brief": "Compare browser caching, CDN caching, and application caching.",
+      "tasks": [
+        "Explain Cache-Control, ETag, and conditional requests.",
+        "Trace a request before and after a cached response expires.",
+        "Show how to avoid caching private user data."
+      ]
+    },
+    {
+      "title": "Database indexes",
+      "brief": "Investigate how an index changes database reads and writes.",
+      "tasks": [
+        "Create a PostgreSQL table and compare EXPLAIN plans with and without an index.",
+        "Explain composite index column order with an example.",
+        "Describe storage and write overhead."
+      ]
+    },
+    {
+      "title": "Idempotency",
+      "brief": "Learn how to safely handle a request that arrives more than once.",
+      "tasks": [
+        "Explain idempotency using a payment request.",
+        "Sketch an idempotency-key table and concurrent request handling.",
+        "Discuss expiration and retries after a timeout."
+      ]
+    },
+    {
+      "title": "Queues and delivery guarantees",
+      "brief": "Explore asynchronous processing and duplicate delivery.",
+      "tasks": [
+        "Compare at-most-once and at-least-once delivery.",
+        "Implement or sketch an idempotent consumer.",
+        "Explain retry backoff and dead-letter queues."
+      ]
+    },
+    {
+      "title": "Transactions and isolation",
+      "brief": "Explore concurrent updates to shared data.",
+      "tasks": [
+        "Demonstrate a lost update with two transactions.",
+        "Compare isolation levels and row locking.",
+        "Explain when a transaction cannot cover an external API call."
+      ]
+    },
+    {
+      "title": "OAuth and OpenID Connect",
+      "brief": "Understand delegated access and user sign-in.",
+      "tasks": [
+        "Draw an authorization-code flow with PKCE.",
+        "Explain access tokens, ID tokens, and refresh tokens.",
+        "Identify where token validation and secure storage happen."
+      ]
+    },
+    {
+      "title": "Observability",
+      "brief": "Understand logs, metrics, and traces in a distributed request.",
+      "tasks": [
+        "Trace an HTTP request through an API and database.",
+        "Choose useful latency, error, and saturation metrics.",
+        "Explain correlation IDs and secret redaction."
+      ]
+    },
+    {
+      "title": "Load balancing and health checks",
+      "brief": "Explore routing traffic across application instances.",
+      "tasks": [
+        "Compare layer 4 and layer 7 balancing.",
+        "Distinguish readiness, liveness, and startup checks.",
+        "Explain connection draining during deployment."
+      ]
+    },
+    {
+      "title": "Consistency and replication",
+      "brief": "Explore the behavior of replicated data.",
+      "tasks": [
+        "Explain a stale read after a successful write.",
+        "Compare strong and eventual consistency for a shopping cart.",
+        "Describe read-your-writes behavior and its cost."
+      ]
+    },
+    {
+      "title": "Timeouts and circuit breakers",
+      "brief": "Learn how services limit the impact of dependency failures.",
+      "tasks": [
+        "Choose a timeout budget for a chain of API calls.",
+        "Explain exponential backoff with jitter.",
+        "Sketch circuit breaker states and recovery."
+      ]
+    },
+    {
+      "title": "Infrastructure as code state",
+      "brief": "Explore how Terraform maps configuration to cloud resources.",
+      "tasks": [
+        "Explain configuration, state, and real infrastructure.",
+        "Describe state locking and drift detection.",
+        "Outline secure remote state storage and recovery."
+      ]
+    },
+    {
+      "title": "Network boundaries",
+      "brief": "Explore private subnets and application connectivity.",
+      "tasks": [
+        "Trace traffic from a public load balancer to a private API and database.",
+        "Explain routes, security groups, and NAT.",
+        "Describe how a VPC-connected Lambda reaches a private database."
+      ]
+    }
+  ],
+  "systemDesign": [
+    {
+      "title": "URL shortener",
+      "brief": "Design a URL shortener for 1 million new links per day and 100 million redirects per day.",
+      "tasks": [
+        "Clarify link expiration, custom aliases, and abuse controls.",
+        "Estimate average and peak requests and storage.",
+        "Define create and redirect APIs and a data model.",
+        "Draw components and explain caching, collisions, and outages."
+      ]
+    },
+    {
+      "title": "Notification service",
+      "brief": "Design email, SMS, and push notifications for 100,000 users.",
+      "tasks": [
+        "Define preferences, delivery latency, and provider limits.",
+        "Design an API, queue, and worker flow.",
+        "Handle duplicates, provider outages, retries, and dead letters.",
+        "Choose monitoring signals and explain delivery status semantics."
+      ]
+    },
+    {
+      "title": "File upload platform",
+      "brief": "Design private uploads of files up to 2 GB for 50,000 users.",
+      "tasks": [
+        "Define upload and download APIs with authorization.",
+        "Design direct multipart uploads and metadata storage.",
+        "Handle interrupted uploads, malware scanning, and cleanup.",
+        "Explain access expiration, encryption, and cost controls."
+      ]
+    },
+    {
+      "title": "Real-time chat",
+      "brief": "Design one-to-one chat for 20,000 concurrent connections.",
+      "tasks": [
+        "Clarify message ordering, offline delivery, and presence.",
+        "Draw WebSocket gateways, message storage, and fanout.",
+        "Design reconnect, deduplication, and pagination.",
+        "Explain scaling and authorization for every conversation."
+      ]
+    },
+    {
+      "title": "API rate limiter",
+      "brief": "Design rate limiting for an API with 10,000 requests per second.",
+      "tasks": [
+        "Define limits per user, tenant, and endpoint.",
+        "Compare token bucket and fixed-window behavior.",
+        "Design shared state and atomic updates across API instances.",
+        "Choose fail-open or fail-closed behavior and explain tradeoffs."
+      ]
+    },
+    {
+      "title": "Appointment booking",
+      "brief": "Design a booking service where two users may request the same slot.",
+      "tasks": [
+        "Define cancellation, time zones, and reservation expiry.",
+        "Design tables and APIs.",
+        "Prevent double booking using database constraints and transactions.",
+        "Handle payment timeouts and send reliable confirmations."
+      ]
+    },
+    {
+      "title": "Search service",
+      "brief": "Design searchable product listings for 1 million products.",
+      "tasks": [
+        "Define filters, ranking, and freshness goals.",
+        "Design indexing from the source database.",
+        "Handle deletion, reindexing, and delayed updates.",
+        "Explain pagination, caching, and search outages."
+      ]
+    },
+    {
+      "title": "Background job platform",
+      "brief": "Design a job service processing 5 million jobs per day.",
+      "tasks": [
+        "Define job submission and status APIs.",
+        "Design scheduling, queues, and worker scaling.",
+        "Handle duplicates, poison messages, retries, and cancellation.",
+        "Estimate throughput and choose alerts for backlog and job age."
+      ]
+    },
+    {
+      "title": "Multi-tenant SaaS",
+      "brief": "Design a business application serving 1,000 organizations.",
+      "tasks": [
+        "Define tenant isolation and roles.",
+        "Compare shared tables with separate databases.",
+        "Design tenant-aware authorization and queries.",
+        "Explain per-tenant quotas, backup recovery, and audit logs."
+      ]
+    },
+    {
+      "title": "Deployment platform",
+      "brief": "Design CI/CD for a containerized API on AWS ECS Fargate.",
+      "tasks": [
+        "Trace build, tests, image publishing, and deployment.",
+        "Design OIDC permissions and secret access.",
+        "Handle migrations, health checks, and rollback.",
+        "Compare rolling and blue-green deployments with cost tradeoffs."
+      ]
+    },
+    {
+      "title": "Analytics ingestion",
+      "brief": "Design ingestion of 50 million events per day.",
+      "tasks": [
+        "Define event schema, retention, and freshness.",
+        "Estimate peak throughput and storage.",
+        "Design buffering, deduplication, and partitioning.",
+        "Handle late events, privacy deletion, and consumer outages."
+      ]
+    },
+    {
+      "title": "Webhook delivery",
+      "brief": "Design outbound webhooks for 10,000 customer endpoints.",
+      "tasks": [
+        "Define subscriptions, event IDs, and payload signing.",
+        "Design durable delivery, retries, and endpoint isolation.",
+        "Explain ordering, duplicates, and replay.",
+        "Choose timeouts, delivery history, and failure alerts."
+      ]
+    }
+  ]
+}
