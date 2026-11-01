@@ -1,146 +1,40 @@
-# Daily DSA Question Automation
+# Daily Learning and System Design
 
-Automatically generates and commits one LeetCode-style DSA question every day to help you practice consistently.
+Every day, generate two practical exercises:
 
-## Folder Structure
+1. **Learn New Concept** — explore an engineering concept through explanations and a small hands-on task (20–30 minutes).
+2. **System Design Challenge** — design a realistic system, estimate capacity, and explain tradeoffs (30–45 minutes).
 
-```
-DSA/
-└── 2025/
-    └── October/
-        ├── Week 1/
-        │   ├── October-1/
-        │   │   └── 1.js
-        │   ├── October-2/
-        │   │   └── 1.js
-        │   └── ...
-        ├── Week 2/
-        ├── Week 3/
-        ├── Week 4/
-        │   ├── October-25/
-        │   │   └── 1.js
-        │   └── October-26/
-        │       └── 1.js
-        └── Week 5/
+## Daily practice
+
+Open both dated Markdown files, complete the checkboxes, and write your notes or design below the prompts. Add diagrams or code alongside them when useful.
+
+```text
+Learn-New-Concept/2026/November/Week 1/November-1/README.md
+System-Design/2026/November/Week 1/November-1/README.md
 ```
 
-Week numbering:
-- Week 1: Days 1-7
-- Week 2: Days 8-14
-- Week 3: Days 15-21
-- Week 4: Days 22-28
-- Week 5: Days 29-31
+Weeks are days 1–7, 8–14, 15–21, 22–28, and 29–31. Dates use **Australia/Perth** regardless of the machine timezone.
 
-## How It Works
+## Automation
 
-### Automation
-- **GitHub Actions** runs daily at 00:00 UTC (midnight)
-- Generates one question per day
-- Automatically commits and pushes to GitHub
-- Tracks progress through 20 LeetCode Easy Array questions
+GitHub Actions runs at **00:00 UTC / 08:00 Perth** daily. In Actions, select **Daily Learning and System Design**, then **Run workflow** for a manual run. Scheduled runs use the default branch.
 
-### Manual Generation
-To manually generate today's question:
 ```bash
 node generate-daily-question.js
-```
-
-### Testing
-To test the automation (generates 5 consecutive days):
-```bash
 node test-generate-questions.js
 ```
 
-## Files
+The generator uses a curated local bank, requires no AI API or dependencies, and creates one exercise per track per day. Repeating a run preserves existing notes and does not advance completed tracks. A partially generated day creates only the missing exercise. Missed days are not backfilled automatically.
 
-- `questions-database.json` - 20 LeetCode Easy Array questions
-- `test-questions-database.json` - 5 simple test questions
-- `generate-daily-question.js` - Main automation script
-- `test-generate-questions.js` - Test script for multiple days
-- `questions-tracker.json` - Tracks which questions have been used
-- `.github/workflows/daily-commit.yml` - GitHub Actions workflow
+## Topics and progression
 
-## How to Use
+`learning-database.json` contains 12 concepts and 12 system design scenarios covering backend development, databases, security, cloud, and reliability. Each track advances independently through `learning-tracker.json` and cycles after all entries are used. Add entries with `title`, `brief`, and a non-empty `tasks` array to extend the curriculum.
 
-### 1. Receive Daily Question
-Every day, a new question file is automatically created and committed.
+## Existing algorithm practice
 
-### 2. Solve the Problem
-Open the day's file (e.g., `DSA/2025/October/Week 4/October-25/1.js`) and implement your solution in the `solution()` function:
+Algorithm challenge generation has been removed. Existing `DSA/` files and the old question database/tracker remain as historical material; the active workflow does not read or update them. The old algorithm test fixture has been removed.
 
-```javascript
-function solution(input) {
-  // TODO: Implement your solution here
-  const { nums, target } = input;
+## Verification
 
-  // Your code here
-
-  return result;
-}
-```
-
-### 3. Run Tests
-Test your solution:
-```bash
-node "DSA/2025/October/Week 4/October-25/1.js"
-```
-
-You'll see output like:
-```
-Running tests for: Two Sum
-
-Test 1: ✅ PASSED
-  Input: {"nums":[2,7,11,15],"target":9}
-  Expected: [0,1]
-  Got: [0,1]
-
-Results: 3/3 tests passed
-```
-
-## Customization
-
-### Change Question Difficulty/Type
-Edit `questions-database.json` to add your own questions or change difficulty levels.
-
-### Change Schedule
-Edit `.github/workflows/daily-commit.yml`:
-```yaml
-schedule:
-  - cron: '0 0 * * *'  # Change this line
-```
-
-### Change Folder Structure
-Modify the `createFolderStructure()` function in `generate-daily-question.js`.
-
-## What Happens When...
-
-### All questions are used?
-The automation cycles back to the first question.
-
-### A new month starts?
-Automatically creates a new month folder (e.g., November).
-
-### You miss a day?
-The next run will generate the question for that day. No questions are skipped.
-
-## GitHub Actions Workflow
-
-The workflow:
-1. Checks out the repository
-2. Sets up Node.js
-3. Runs the generation script
-4. Commits changes (if any)
-5. Pushes to GitHub
-
-View workflow runs: Actions tab in your GitHub repository
-
-## Manual Trigger
-
-You can manually trigger the workflow:
-1. Go to Actions tab on GitHub
-2. Select "Daily DSA Question Generator"
-3. Click "Run workflow"
-
----
-
-Generated with Claude Code | https://claude.com/claude-code
+Tests run in a temporary directory and check both tracks, Perth dates, repeat runs, preservation of notes, partial days, topic cycling, month week boundaries, and invalid empty tracks. They do not modify your practice files.

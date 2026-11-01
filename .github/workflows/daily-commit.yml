@@ -1,10 +1,17 @@
-name: Daily DSA Question Generator
+name: Daily Learning and System Design
 
 on:
   schedule:
     # Run every day at 00:00 UTC (midnight)
     - cron: '0 0 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-learning
+  cancel-in-progress: false
 
 jobs:
   generate_daily_question:
@@ -22,7 +29,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate daily DSA question
+      - name: Test generator
+        run: node test-generate-questions.js
+
+      - name: Generate daily learning exercises
         run: |
           echo "Starting daily question generation at $(date)"
           node generate-daily-question.js
@@ -33,7 +43,7 @@ jobs:
           git config --global user.email "swopnilacharya@gmail.com"
 
           # Add all new files and changes
-          git add DSA/ questions-tracker.json
+          git add Learn-New-Concept/ System-Design/ learning-tracker.json
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
@@ -41,7 +51,7 @@ jobs:
           else
             # Get current date for commit message
             CURRENT_DATE=$(date +'%Y-%m-%d')
-            git commit -m "Add daily DSA question for ${CURRENT_DATE}"
+            git commit -m "Add daily learning exercises for ${CURRENT_DATE}"
             git push
             echo "Successfully pushed daily question!"
           fi
