@@ -37,6 +37,12 @@ jobs:
           echo "Starting daily question generation at $(date)"
           node generate-daily-question.js
 
+      - name: Report generation failure
+        if: failure()
+        run: |
+          echo "::error::Daily learning generation failed. Check the logs; if the curriculum is exhausted, append new source-backed entries."
+          echo "Daily generation failed. Check the logs for the cause. Exhausted curricula must be extended; completed topics will not repeat." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit and push changes
         run: |
           git config --global user.name "swopnilll"

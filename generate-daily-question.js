@@ -18,8 +18,11 @@ function generate({ root = __dirname, date = new Date() } = {}) {
   // Validate both tracks before writing either exercise.
   for (const [key] of tracks) {
     if (!Array.isArray(database[key]) || database[key].length === 0) throw new Error(`Empty track: ${key}`);
+    if (new Set(database[key].map(item => item.id)).size !== database[key].length) {
+      throw new Error(`Duplicate exercise IDs in ${key}`);
+    }
     for (const item of database[key]) {
-      if (!item.title || !item.brief || !Array.isArray(item.tasks) || !item.tasks.length) {
+      if (!item.title || !item.brief || !Array.isArray(item.tasks) || !item.tasks.length || item.tasks.length > 3 || !item.id || !item.source?.title || !item.source?.focus || !item.source?.url?.startsWith('https://')) {
         throw new Error(`Invalid exercise in ${key}`);
       }
     }
@@ -27,13 +30,20 @@ function generate({ root = __dirname, date = new Date() } = {}) {
       throw new Error(`Invalid tracker: ${key}`);
     }
   }
+  // Preflight all missing exercises before writing either track.
+  for (const [key, folder] of tracks) {
+    const target = path.join(root, folder, year, month, `Week ${Math.ceil(day / 7)}`, `${month}-${day}`, 'README.md');
+    if (!fs.existsSync(target) && (tracker[key] || 0) >= database[key].length) {
+      throw new Error(`Curriculum exhausted for ${key}. Add new source-backed entries to learning-database.json; completed topics will not repeat.`);
+    }
+  }
   const created = [];
   for (const [key, folder, label] of tracks) {
     const target = path.join(root, folder, year, month, `Week ${Math.ceil(day / 7)}`, `${month}-${day}`, 'README.md');
     if (fs.existsSync(target)) continue;
     const index = tracker[key] || 0;
-    const item = database[key][index % database[key].length];
-    const content = `# ${label}: ${item.title}\n\nDate: ${month} ${day}, ${year} (Australia/Perth)\n\n${item.brief}\n\n## Your tasks\n\n${item.tasks.map(task => `- [ ] ${task}`).join('\n')}\n\n## Notes and solution\n\nWrite your explanation, examples, and decisions here.\n\n## Review\n\n- [ ] Explain the result in your own words.\n- [ ] Identify a tradeoff or limitation.\n- [ ] Record what you would investigate next.\n`;
+    const item = database[key][index];
+    const content = `# ${label}: ${item.title}\n\nDate: ${month} ${day}, ${year} (Australia/Perth)\n\n${item.brief}\n\n## Reading\n\n[${item.source.title}](${item.source.url})\n\nFocus: ${item.source.focus}. Read the relevant section, not the whole article.\n\n${key === 'systemDesign' ? 'Original practice scenario informed by the linked resource; not a question quoted from its publisher.' : 'Original study prompts based on the linked resource.'}\n\n## Your tasks\n\n${item.tasks.map(task => `- [ ] ${task}`).join('\n')}\n\n## Notes and solution\n\nWrite your explanation, examples, and decisions here.\n`;
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, content, { flag: 'wx' });
     tracker[key] = index + 1;

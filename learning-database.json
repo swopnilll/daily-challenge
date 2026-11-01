@@ -1,221 +1,905 @@
 {
   "concepts": [
     {
-      "title": "HTTP caching",
-      "brief": "Compare browser caching, CDN caching, and application caching.",
+      "id": "concept-001",
+      "title": "Idempotency keys",
+      "brief": "Read only the part about idempotency keys. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Idempotent requests",
+        "url": "https://docs.stripe.com/api/idempotent_requests",
+        "focus": "Idempotency keys"
+      },
       "tasks": [
-        "Explain Cache-Control, ETag, and conditional requests.",
-        "Trace a request before and after a cached response expires.",
-        "Show how to avoid caching private user data."
+        "Explain idempotency keys in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Database indexes",
-      "brief": "Investigate how an index changes database reads and writes.",
+      "id": "concept-002",
+      "title": "Atomic database writes and external effects",
+      "brief": "Read only the part about atomic database writes and external effects. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Atomic database writes and external effects"
+      },
       "tasks": [
-        "Create a PostgreSQL table and compare EXPLAIN plans with and without an index.",
-        "Explain composite index column order with an example.",
-        "Describe storage and write overhead."
+        "Explain atomic database writes and external effects in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Idempotency",
-      "brief": "Learn how to safely handle a request that arrives more than once.",
+      "id": "concept-003",
+      "title": "Duplicate event handling",
+      "brief": "Read only the part about duplicate event handling. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Duplicate event handling"
+      },
       "tasks": [
-        "Explain idempotency using a payment request.",
-        "Sketch an idempotency-key table and concurrent request handling.",
-        "Discuss expiration and retries after a timeout."
+        "Explain duplicate event handling in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Queues and delivery guarantees",
-      "brief": "Explore asynchronous processing and duplicate delivery.",
+      "id": "concept-004",
+      "title": "Unique constraints",
+      "brief": "Read only the part about unique constraints. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Unique constraints"
+      },
       "tasks": [
-        "Compare at-most-once and at-least-once delivery.",
-        "Implement or sketch an idempotent consumer.",
-        "Explain retry backoff and dead-letter queues."
+        "Explain unique constraints in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Transactions and isolation",
-      "brief": "Explore concurrent updates to shared data.",
+      "id": "concept-005",
+      "title": "Cache freshness",
+      "brief": "Read only the part about cache freshness. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache freshness"
+      },
       "tasks": [
-        "Demonstrate a lost update with two transactions.",
-        "Compare isolation levels and row locking.",
-        "Explain when a transaction cannot cover an external API call."
+        "Explain cache freshness in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "OAuth and OpenID Connect",
-      "brief": "Understand delegated access and user sign-in.",
+      "id": "concept-006",
+      "title": "Connection and request timeouts",
+      "brief": "Read only the part about connection and request timeouts. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Connection and request timeouts"
+      },
       "tasks": [
-        "Draw an authorization-code flow with PKCE.",
-        "Explain access tokens, ID tokens, and refresh tokens.",
-        "Identify where token validation and secure storage happen."
+        "Explain connection and request timeouts in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Observability",
-      "brief": "Understand logs, metrics, and traces in a distributed request.",
+      "id": "concept-007",
+      "title": "Retry backoff and jitter",
+      "brief": "Read only the part about retry backoff and jitter. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Retry backoff and jitter"
+      },
       "tasks": [
-        "Trace an HTTP request through an API and database.",
-        "Choose useful latency, error, and saturation metrics.",
-        "Explain correlation IDs and secret redaction."
+        "Explain retry backoff and jitter in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Load balancing and health checks",
-      "brief": "Explore routing traffic across application instances.",
+      "id": "concept-008",
+      "title": "Webhook event ordering",
+      "brief": "Read only the part about webhook event ordering. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook event ordering"
+      },
       "tasks": [
-        "Compare layer 4 and layer 7 balancing.",
-        "Distinguish readiness, liveness, and startup checks.",
-        "Explain connection draining during deployment."
+        "Explain webhook event ordering in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Consistency and replication",
-      "brief": "Explore the behavior of replicated data.",
+      "id": "concept-009",
+      "title": "Foreign keys",
+      "brief": "Read only the part about foreign keys. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Foreign keys"
+      },
       "tasks": [
-        "Explain a stale read after a successful write.",
-        "Compare strong and eventual consistency for a shopping cart.",
-        "Describe read-your-writes behavior and its cost."
+        "Explain foreign keys in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Timeouts and circuit breakers",
-      "brief": "Learn how services limit the impact of dependency failures.",
+      "id": "concept-010",
+      "title": "Read Committed snapshots",
+      "brief": "Read only the part about read committed snapshots. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Read Committed snapshots"
+      },
       "tasks": [
-        "Choose a timeout budget for a chain of API calls.",
-        "Explain exponential backoff with jitter.",
-        "Sketch circuit breaker states and recovery."
+        "Explain read committed snapshots in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Infrastructure as code state",
-      "brief": "Explore how Terraform maps configuration to cloud resources.",
+      "id": "concept-011",
+      "title": "Conditional HTTP requests",
+      "brief": "Read only the part about conditional http requests. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Conditional HTTP requests"
+      },
       "tasks": [
-        "Explain configuration, state, and real infrastructure.",
-        "Describe state locking and drift detection.",
-        "Outline secure remote state storage and recovery."
+        "Explain conditional http requests in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     },
     {
-      "title": "Network boundaries",
-      "brief": "Explore private subnets and application connectivity.",
+      "id": "concept-012",
+      "title": "Idempotent response semantics",
+      "brief": "Read only the part about idempotent response semantics. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Safe retries",
+        "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+        "focus": "Idempotent response semantics"
+      },
       "tasks": [
-        "Trace traffic from a public load balancer to a private API and database.",
-        "Explain routes, security groups, and NAT.",
-        "Describe how a VPC-connected Lambda reaches a private database."
+        "Explain idempotent response semantics in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-013",
+      "title": "Idempotency key parameter checks",
+      "brief": "Read only the part about idempotency key parameter checks. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Idempotent requests",
+        "url": "https://docs.stripe.com/api/idempotent_requests",
+        "focus": "Idempotency key parameter checks"
+      },
+      "tasks": [
+        "Explain idempotency key parameter checks in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-014",
+      "title": "Outbox relay duplicates",
+      "brief": "Read only the part about outbox relay duplicates. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Outbox relay duplicates"
+      },
+      "tasks": [
+        "Explain outbox relay duplicates in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-015",
+      "title": "Webhook signature verification",
+      "brief": "Read only the part about webhook signature verification. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook signature verification"
+      },
+      "tasks": [
+        "Explain webhook signature verification in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-016",
+      "title": "Check constraints",
+      "brief": "Read only the part about check constraints. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Check constraints"
+      },
+      "tasks": [
+        "Explain check constraints in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-017",
+      "title": "Private and shared HTTP caches",
+      "brief": "Read only the part about private and shared http caches. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Private and shared HTTP caches"
+      },
+      "tasks": [
+        "Explain private and shared http caches in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-018",
+      "title": "Retry amplification",
+      "brief": "Read only the part about retry amplification. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Retry amplification"
+      },
+      "tasks": [
+        "Explain retry amplification in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-019",
+      "title": "Serializable transactions",
+      "brief": "Read only the part about serializable transactions. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Serializable transactions"
+      },
+      "tasks": [
+        "Explain serializable transactions in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-020",
+      "title": "Nulls and uniqueness",
+      "brief": "Read only the part about nulls and uniqueness. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Nulls and uniqueness"
+      },
+      "tasks": [
+        "Explain nulls and uniqueness in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-021",
+      "title": "Cache revalidation versus storage",
+      "brief": "Read only the part about cache revalidation versus storage. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache revalidation versus storage"
+      },
+      "tasks": [
+        "Explain cache revalidation versus storage in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-022",
+      "title": "Bounded retry budgets",
+      "brief": "Read only the part about bounded retry budgets. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Bounded retry budgets"
+      },
+      "tasks": [
+        "Explain bounded retry budgets in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-023",
+      "title": "Fast webhook acknowledgement",
+      "brief": "Read only the part about fast webhook acknowledgement. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Fast webhook acknowledgement"
+      },
+      "tasks": [
+        "Explain fast webhook acknowledgement in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-024",
+      "title": "Composite uniqueness",
+      "brief": "Read only the part about composite uniqueness. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Composite uniqueness"
+      },
+      "tasks": [
+        "Explain composite uniqueness in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-025",
+      "title": "Transaction retry boundaries",
+      "brief": "Read only the part about transaction retry boundaries. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Transaction retry boundaries"
+      },
+      "tasks": [
+        "Explain transaction retry boundaries in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-026",
+      "title": "Cache variation",
+      "brief": "Read only the part about cache variation. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache variation"
+      },
+      "tasks": [
+        "Explain cache variation in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-027",
+      "title": "Client request identity",
+      "brief": "Read only the part about client request identity. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Amazon Builders’ Library: Safe retries",
+        "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+        "focus": "Client request identity"
+      },
+      "tasks": [
+        "Explain client request identity in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-028",
+      "title": "Outbox ordering",
+      "brief": "Read only the part about outbox ordering. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Outbox ordering"
+      },
+      "tasks": [
+        "Explain outbox ordering in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-029",
+      "title": "Webhook replay protection",
+      "brief": "Read only the part about webhook replay protection. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook replay protection"
+      },
+      "tasks": [
+        "Explain webhook replay protection in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
+      ]
+    },
+    {
+      "id": "concept-030",
+      "title": "Revalidation after mutation",
+      "brief": "Read only the part about revalidation after mutation. Spend 10–15 minutes reading and answering.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Revalidation after mutation"
+      },
+      "tasks": [
+        "Explain revalidation after mutation in your own words.",
+        "Show one tiny example or short pseudocode snippet.",
+        "Name one limitation or failure case."
       ]
     }
   ],
   "systemDesign": [
     {
-      "title": "Stripe payment inside a transaction",
-      "brief": "Your checkout opens a database transaction, creates an order, calls Stripe, then commits. Stripe sometimes times out; other times payment succeeds but the database commit fails.",
+      "id": "design-001",
+      "title": "Stripe timed out",
+      "brief": "Checkout calls Stripe inside a database transaction. The request times out, but the payment may have succeeded. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Idempotent requests",
+        "url": "https://docs.stripe.com/api/idempotent_requests",
+        "focus": "Idempotency keys"
+      },
       "tasks": [
-        "Identify what a database rollback cannot undo.",
-        "Sketch a safer order/payment flow, including an unknown payment outcome.",
-        "Explain how a retry avoids charging twice."
+        "Identify the exact failure in this flow.",
+        "Separate local state changes from the external payment call and keep one key per payment attempt.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Email failure breaks signup",
-      "brief": "Signup creates a user and then sends a welcome email. When the email provider fails, the API returns an error even though the user already exists.",
+      "id": "design-002",
+      "title": "Order saved, email lost",
+      "brief": "An order commits successfully, then the process crashes before sending its confirmation email. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Atomic database writes and external effects"
+      },
       "tasks": [
-        "Decide when signup should count as successful.",
-        "Sketch a small change that lets the email be retried.",
-        "Explain how you avoid sending the same welcome email twice."
+        "Identify the exact failure in this flow.",
+        "Persist the intent to send alongside the order.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Duplicate webhook updates",
-      "brief": "A payment webhook is delivered twice and your handler adds account credit twice.",
+      "id": "design-003",
+      "title": "Account credited twice",
+      "brief": "The same payment webhook is delivered twice and both handlers add credit. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Duplicate event handling"
+      },
       "tasks": [
-        "Identify why checking the balance first is insufficient.",
-        "Sketch how to record and apply each event only once, even concurrently.",
-        "Describe one test for duplicate delivery."
+        "Identify the exact failure in this flow.",
+        "Make event recording and the local balance update atomic.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Two people book the same slot",
-      "brief": "Your API checks whether a slot is free, then inserts a booking. Two simultaneous requests both succeed.",
+      "id": "design-004",
+      "title": "Double booking",
+      "brief": "Two requests check that a slot is free, then both insert a booking. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Unique constraints"
+      },
       "tasks": [
-        "Explain the race between the check and insert.",
-        "Propose one database change that prevents double booking.",
-        "Decide what response the losing request receives."
+        "Identify the exact failure in this flow.",
+        "Enforce one booking per slot in the database.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Stale cache after an edit",
-      "brief": "Updating a product saves the new price to the database, but the next page load still shows the cached old price.",
+      "id": "design-005",
+      "title": "An old price remains visible",
+      "brief": "A product price changes, but a browser keeps displaying its cached response for an hour. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache freshness"
+      },
       "tasks": [
-        "Locate the stale-data path.",
-        "Choose a small cache update or invalidation strategy.",
-        "Explain what happens if that cache operation fails."
+        "Identify the exact failure in this flow.",
+        "Choose a freshness policy for the product response.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Worker crashes after sending",
-      "brief": "A worker sends a notification, then crashes before acknowledging its queue message. The job is delivered again.",
+      "id": "design-006",
+      "title": "Shipping quote hangs",
+      "brief": "A shipping quote call stalls and holds an API request open for 40 seconds. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Connection and request timeouts"
+      },
       "tasks": [
-        "Explain why the second delivery occurs.",
-        "Sketch how to prevent or reduce duplicate sends, including provider limitations.",
-        "Describe when the message should be acknowledged."
+        "Identify the exact failure in this flow.",
+        "Set a bounded wait and define the user-visible failure response.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "A slow API holds the request open",
-      "brief": "Your endpoint calls a shipping provider that sometimes takes 40 seconds. Requests pile up while waiting.",
+      "id": "design-007",
+      "title": "Retries arrive together",
+      "brief": "After a brief provider outage, every worker retries at exactly the same second. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Retry backoff and jitter"
+      },
       "tasks": [
-        "Choose a timeout and a useful response to the user.",
-        "Sketch how the user can retry or check progress.",
-        "Explain one risk of automatically retrying the provider call."
+        "Identify the exact failure in this flow.",
+        "Spread retries and limit their number.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Upload leaves an orphaned file",
-      "brief": "A file upload to object storage succeeds, but saving its database record fails. The file is left behind.",
+      "id": "design-008",
+      "title": "Paid becomes pending",
+      "brief": "A delayed older webhook changes an already paid order back to pending. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook event ordering"
+      },
       "tasks": [
-        "Sketch a small upload status flow.",
-        "Choose how to detect and clean up orphaned files.",
-        "Explain what a retry should reuse or replace."
+        "Identify the exact failure in this flow.",
+        "Prevent stale events from regressing the order status.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Double-click creates two orders",
-      "brief": "A customer double-clicks Pay and the server receives two identical checkout requests.",
+      "id": "design-009",
+      "title": "A comment has no post",
+      "brief": "Deleting a post leaves comment rows that refer to its missing ID. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Foreign keys"
+      },
       "tasks": [
-        "Explain why disabling the button alone is insufficient.",
-        "Sketch server-side deduplication for concurrent requests.",
-        "Decide what the second request should return."
+        "Identify the exact failure in this flow.",
+        "Choose a deletion policy and enforce the relationship.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "One failed item restarts a batch",
-      "brief": "A scheduled job processes 100 invoices. Invoice 73 fails, and rerunning the job processes the first 72 again.",
+      "id": "design-010",
+      "title": "Two reads disagree",
+      "brief": "A request reads a report total twice inside a transaction and sees different values after another request commits. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Read Committed snapshots"
+      },
       "tasks": [
-        "Choose a way to track progress per invoice.",
-        "Sketch retry behavior for the failed invoice.",
-        "Explain how already completed invoices avoid duplicate side effects."
+        "Identify the exact failure in this flow.",
+        "Decide whether the report needs a stable snapshot.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Lost profile updates",
-      "brief": "Two browser tabs read the same profile. One changes the phone number, the other saves an old copy and overwrites that change.",
+      "id": "design-011",
+      "title": "Unchanged data downloads again",
+      "brief": "A browser downloads an unchanged product catalogue on every refresh. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Conditional HTTP requests"
+      },
       "tasks": [
-        "Explain the lost update.",
-        "Choose partial updates or version checks and show a tiny request example.",
-        "Describe how the client handles a conflict."
+        "Identify the exact failure in this flow.",
+        "Use a validator and conditional request to avoid resending the body.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     },
     {
-      "title": "Webhook arrives before the response",
-      "brief": "A payment-success webhook reaches your server before the checkout request has saved the provider payment ID. The handler cannot find the order.",
+      "id": "design-012",
+      "title": "Retry returns a confusing error",
+      "brief": "The first create-order request succeeds but its response is lost. A retry only returns duplicate-order error. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Safe retries",
+        "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+        "focus": "Idempotent response semantics"
+      },
       "tasks": [
-        "Sketch how to link the order and payment before making the external call.",
-        "Explain how to handle an event whose order is not found yet.",
-        "Describe how the late checkout response avoids overwriting a successful status."
+        "Identify the exact failure in this flow.",
+        "Return the original result for the same logical request.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-013",
+      "title": "A key is reused for another amount",
+      "brief": "The client accidentally sends the same payment key first with $20 and then with $50. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Idempotent requests",
+        "url": "https://docs.stripe.com/api/idempotent_requests",
+        "focus": "Idempotency key parameter checks"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Reject mismatched parameters rather than treating both requests as equivalent.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-014",
+      "title": "An event publishes twice",
+      "brief": "A relay publishes an outbox event, then crashes before marking it sent. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Outbox relay duplicates"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Keep the consumer safe when the relay republishes.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-015",
+      "title": "A forged payment event",
+      "brief": "Your webhook accepts any JSON body claiming that an order was paid. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook signature verification"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Authenticate the incoming event before applying state changes.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-016",
+      "title": "Stock becomes negative",
+      "brief": "An inventory update accidentally writes a negative stock value. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Check constraints"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Enforce the allowed value range in the database.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-017",
+      "title": "One user sees another profile",
+      "brief": "A shared cache stores an authenticated profile response using only the URL as its key. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Private and shared HTTP caches"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Choose response cache directives appropriate for private data.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-018",
+      "title": "Three layers retry",
+      "brief": "An API, its service client, and a worker each retry a failing dependency three times. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Retry amplification"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Choose where retry responsibility belongs.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-019",
+      "title": "Both doctors go off duty",
+      "brief": "Two concurrent requests each see another doctor on duty and remove their own doctor, leaving nobody on duty. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Serializable transactions"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Preserve the cross-row invariant under concurrent requests.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-020",
+      "title": "Duplicate optional identifiers",
+      "brief": "A team expects a unique nullable external ID column to forbid multiple rows with no ID. Its assumptions do not match the database behavior. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Nulls and uniqueness"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Choose and document the intended treatment of missing IDs.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-021",
+      "title": "Sensitive data remains stored",
+      "brief": "A developer uses no-cache expecting the browser never to store a sensitive response. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache revalidation versus storage"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Select directives that match the actual storage requirement.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-022",
+      "title": "A dead endpoint retries forever",
+      "brief": "A background job keeps retrying a permanently invalid shipping address. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Timeouts and backoff",
+        "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+        "focus": "Bounded retry budgets"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Distinguish permanent failures from transient ones and bound retries.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-023",
+      "title": "Slow webhook keeps returning errors",
+      "brief": "A webhook waits for email delivery before responding; provider retries create a growing backlog. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Fast webhook acknowledgement"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Persist accepted work durably and respond before slow processing.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-024",
+      "title": "Duplicate project membership",
+      "brief": "Concurrent requests insert the same user into the same project twice. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Constraints",
+        "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "focus": "Composite uniqueness"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Enforce uniqueness on the user and project pair.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-025",
+      "title": "Serialization retry sends two emails",
+      "brief": "A transaction retry wrapper reruns a callback that also sends a receipt email. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "PostgreSQL: Transaction isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "focus": "Transaction retry boundaries"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Keep external side effects outside retryable database work.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-026",
+      "title": "Wrong language from cache",
+      "brief": "An endpoint varies text by Accept-Language, but the cache returns the English response for every language. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Cache variation"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Include the relevant request variation in cache behavior.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-027",
+      "title": "Two clicks become two orders",
+      "brief": "Two checkout requests arrive concurrently after a customer double-clicks. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Amazon Builders’ Library: Safe retries",
+        "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+        "focus": "Client request identity"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Give the logical operation a stable identity and deduplicate on the server.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-028",
+      "title": "Cancelled arrives before created",
+      "brief": "Two relays publish order events in a different order from the database updates. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "AWS Prescriptive Guidance: Transactional outbox",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+        "focus": "Outbox ordering"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Preserve relevant ordering or reject stale state transitions.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-029",
+      "title": "An old signed request is replayed",
+      "brief": "A captured valid webhook request is resent much later and your endpoint accepts it again. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "Stripe: Webhooks",
+        "url": "https://docs.stripe.com/webhooks",
+        "focus": "Webhook replay protection"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Combine signature timestamp checks with durable event deduplication.",
+        "Describe one retry or failure test that checks your redesign."
+      ]
+    },
+    {
+      "id": "design-030",
+      "title": "Refresh still shows an old edit",
+      "brief": "An item update succeeds, but the next read reuses a still-fresh response from the old representation. Spend 10–15 minutes on a quick redesign.",
+      "source": {
+        "title": "MDN: HTTP caching",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+        "focus": "Revalidation after mutation"
+      },
+      "tasks": [
+        "Identify the exact failure in this flow.",
+        "Choose a small invalidation or revalidation strategy after the mutation.",
+        "Describe one retry or failure test that checks your redesign."
       ]
     }
   ]
