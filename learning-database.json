@@ -111,123 +111,111 @@
   ],
   "systemDesign": [
     {
-      "title": "URL shortener",
-      "brief": "Design a URL shortener for 1 million new links per day and 100 million redirects per day.",
+      "title": "Stripe payment inside a transaction",
+      "brief": "Your checkout opens a database transaction, creates an order, calls Stripe, then commits. Stripe sometimes times out; other times payment succeeds but the database commit fails.",
       "tasks": [
-        "Clarify link expiration, custom aliases, and abuse controls.",
-        "Estimate average and peak requests and storage.",
-        "Define create and redirect APIs and a data model.",
-        "Draw components and explain caching, collisions, and outages."
+        "Identify what a database rollback cannot undo.",
+        "Sketch a safer order/payment flow, including an unknown payment outcome.",
+        "Explain how a retry avoids charging twice."
       ]
     },
     {
-      "title": "Notification service",
-      "brief": "Design email, SMS, and push notifications for 100,000 users.",
+      "title": "Email failure breaks signup",
+      "brief": "Signup creates a user and then sends a welcome email. When the email provider fails, the API returns an error even though the user already exists.",
       "tasks": [
-        "Define preferences, delivery latency, and provider limits.",
-        "Design an API, queue, and worker flow.",
-        "Handle duplicates, provider outages, retries, and dead letters.",
-        "Choose monitoring signals and explain delivery status semantics."
+        "Decide when signup should count as successful.",
+        "Sketch a small change that lets the email be retried.",
+        "Explain how you avoid sending the same welcome email twice."
       ]
     },
     {
-      "title": "File upload platform",
-      "brief": "Design private uploads of files up to 2 GB for 50,000 users.",
+      "title": "Duplicate webhook updates",
+      "brief": "A payment webhook is delivered twice and your handler adds account credit twice.",
       "tasks": [
-        "Define upload and download APIs with authorization.",
-        "Design direct multipart uploads and metadata storage.",
-        "Handle interrupted uploads, malware scanning, and cleanup.",
-        "Explain access expiration, encryption, and cost controls."
+        "Identify why checking the balance first is insufficient.",
+        "Sketch how to record and apply each event only once, even concurrently.",
+        "Describe one test for duplicate delivery."
       ]
     },
     {
-      "title": "Real-time chat",
-      "brief": "Design one-to-one chat for 20,000 concurrent connections.",
+      "title": "Two people book the same slot",
+      "brief": "Your API checks whether a slot is free, then inserts a booking. Two simultaneous requests both succeed.",
       "tasks": [
-        "Clarify message ordering, offline delivery, and presence.",
-        "Draw WebSocket gateways, message storage, and fanout.",
-        "Design reconnect, deduplication, and pagination.",
-        "Explain scaling and authorization for every conversation."
+        "Explain the race between the check and insert.",
+        "Propose one database change that prevents double booking.",
+        "Decide what response the losing request receives."
       ]
     },
     {
-      "title": "API rate limiter",
-      "brief": "Design rate limiting for an API with 10,000 requests per second.",
+      "title": "Stale cache after an edit",
+      "brief": "Updating a product saves the new price to the database, but the next page load still shows the cached old price.",
       "tasks": [
-        "Define limits per user, tenant, and endpoint.",
-        "Compare token bucket and fixed-window behavior.",
-        "Design shared state and atomic updates across API instances.",
-        "Choose fail-open or fail-closed behavior and explain tradeoffs."
+        "Locate the stale-data path.",
+        "Choose a small cache update or invalidation strategy.",
+        "Explain what happens if that cache operation fails."
       ]
     },
     {
-      "title": "Appointment booking",
-      "brief": "Design a booking service where two users may request the same slot.",
+      "title": "Worker crashes after sending",
+      "brief": "A worker sends a notification, then crashes before acknowledging its queue message. The job is delivered again.",
       "tasks": [
-        "Define cancellation, time zones, and reservation expiry.",
-        "Design tables and APIs.",
-        "Prevent double booking using database constraints and transactions.",
-        "Handle payment timeouts and send reliable confirmations."
+        "Explain why the second delivery occurs.",
+        "Sketch how to prevent or reduce duplicate sends, including provider limitations.",
+        "Describe when the message should be acknowledged."
       ]
     },
     {
-      "title": "Search service",
-      "brief": "Design searchable product listings for 1 million products.",
+      "title": "A slow API holds the request open",
+      "brief": "Your endpoint calls a shipping provider that sometimes takes 40 seconds. Requests pile up while waiting.",
       "tasks": [
-        "Define filters, ranking, and freshness goals.",
-        "Design indexing from the source database.",
-        "Handle deletion, reindexing, and delayed updates.",
-        "Explain pagination, caching, and search outages."
+        "Choose a timeout and a useful response to the user.",
+        "Sketch how the user can retry or check progress.",
+        "Explain one risk of automatically retrying the provider call."
       ]
     },
     {
-      "title": "Background job platform",
-      "brief": "Design a job service processing 5 million jobs per day.",
+      "title": "Upload leaves an orphaned file",
+      "brief": "A file upload to object storage succeeds, but saving its database record fails. The file is left behind.",
       "tasks": [
-        "Define job submission and status APIs.",
-        "Design scheduling, queues, and worker scaling.",
-        "Handle duplicates, poison messages, retries, and cancellation.",
-        "Estimate throughput and choose alerts for backlog and job age."
+        "Sketch a small upload status flow.",
+        "Choose how to detect and clean up orphaned files.",
+        "Explain what a retry should reuse or replace."
       ]
     },
     {
-      "title": "Multi-tenant SaaS",
-      "brief": "Design a business application serving 1,000 organizations.",
+      "title": "Double-click creates two orders",
+      "brief": "A customer double-clicks Pay and the server receives two identical checkout requests.",
       "tasks": [
-        "Define tenant isolation and roles.",
-        "Compare shared tables with separate databases.",
-        "Design tenant-aware authorization and queries.",
-        "Explain per-tenant quotas, backup recovery, and audit logs."
+        "Explain why disabling the button alone is insufficient.",
+        "Sketch server-side deduplication for concurrent requests.",
+        "Decide what the second request should return."
       ]
     },
     {
-      "title": "Deployment platform",
-      "brief": "Design CI/CD for a containerized API on AWS ECS Fargate.",
+      "title": "One failed item restarts a batch",
+      "brief": "A scheduled job processes 100 invoices. Invoice 73 fails, and rerunning the job processes the first 72 again.",
       "tasks": [
-        "Trace build, tests, image publishing, and deployment.",
-        "Design OIDC permissions and secret access.",
-        "Handle migrations, health checks, and rollback.",
-        "Compare rolling and blue-green deployments with cost tradeoffs."
+        "Choose a way to track progress per invoice.",
+        "Sketch retry behavior for the failed invoice.",
+        "Explain how already completed invoices avoid duplicate side effects."
       ]
     },
     {
-      "title": "Analytics ingestion",
-      "brief": "Design ingestion of 50 million events per day.",
+      "title": "Lost profile updates",
+      "brief": "Two browser tabs read the same profile. One changes the phone number, the other saves an old copy and overwrites that change.",
       "tasks": [
-        "Define event schema, retention, and freshness.",
-        "Estimate peak throughput and storage.",
-        "Design buffering, deduplication, and partitioning.",
-        "Handle late events, privacy deletion, and consumer outages."
+        "Explain the lost update.",
+        "Choose partial updates or version checks and show a tiny request example.",
+        "Describe how the client handles a conflict."
       ]
     },
     {
-      "title": "Webhook delivery",
-      "brief": "Design outbound webhooks for 10,000 customer endpoints.",
+      "title": "Webhook arrives before the response",
+      "brief": "A payment-success webhook reaches your server before the checkout request has saved the provider payment ID. The handler cannot find the order.",
       "tasks": [
-        "Define subscriptions, event IDs, and payload signing.",
-        "Design durable delivery, retries, and endpoint isolation.",
-        "Explain ordering, duplicates, and replay.",
-        "Choose timeouts, delivery history, and failure alerts."
+        "Sketch how to link the order and payment before making the external call.",
+        "Explain how to handle an event whose order is not found yet.",
+        "Describe how the late checkout response avoids overwriting a successful status."
       ]
     }
   ]

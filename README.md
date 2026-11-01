@@ -3,7 +3,7 @@
 Every day, generate two practical exercises:
 
 1. **Learn New Concept** — explore an engineering concept through explanations and a small hands-on task (20–30 minutes).
-2. **System Design Challenge** — design a realistic system, estimate capacity, and explain tradeoffs (30–45 minutes).
+2. **System Design Challenge** — fix one concrete failure in an existing application with a quick redesign (10–15 minutes).
 
 ## Daily practice
 
@@ -29,7 +29,9 @@ The generator uses a curated local bank, requires no AI API or dependencies, and
 
 ## Topics and progression
 
-`learning-database.json` contains 12 concepts and 12 system design scenarios covering backend development, databases, security, cloud, and reliability. Each track advances independently through `learning-tracker.json` and cycles after all entries are used. Add entries with `title`, `brief`, and a non-empty `tasks` array to extend the curriculum.
+`learning-database.json` contains 12 concepts and 12 small system design scenarios covering backend development, databases, security, cloud, and reliability. Each track advances independently through `learning-tracker.json` and cycles after all entries are used. Add entries with `title`, `brief`, and a non-empty `tasks` array to extend the curriculum.
+
+Each system design exercise focuses on one bug or failure, such as a Stripe call inside a database transaction, a duplicate webhook, or double booking. Answer with a few bullets or short pseudocode: what breaks, the smallest useful redesign, and how a retry or failure behaves. Full architecture designs and capacity estimates are not required.
 
 ## Existing algorithm practice
 
